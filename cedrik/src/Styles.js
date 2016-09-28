@@ -7,10 +7,32 @@ const styles = {
 	addIngredient: {
 
 	},
+	addDrinkButton: {
+		margin: '10px',
+		width: '40px',
+		height: '40px',
+		borderRadius: '25px',
+		color: 'white',
+		backgroundColor: '#81C784',
+		textShadow: '0 1px #737373',
+		// boxShadow: 'inset 0 1px 0 0 #737373, inset 0 -1px 0 0 #DBDBDB',
+		border: '1px solid #4CAF50',
+		outline: 'none',
+		':hover': {
+			backgroundColor: color('#81C784').darken(0.1).hexString(),
+		},
+		':focus': {
+			backgroundColor: color('#81C784').darken(0.2).hexString(),
+		},
+		':active': {
+			backgroundColor: color('#81C784').darken(0.25).hexString(),
+		}
+	},
 	addIngredientButton: {
 		fontSize: '0.8em',
 		fontWeight: '300',
 		color: '#C4C4C4',
+		marginTop: '5px',
 		width: '100%',
 		height: 35,
 		borderRadius: '4px',
@@ -30,18 +52,19 @@ const styles = {
 		}
 	},
 	drink: {
+		position: 'relative',
 		backgroundColor: 'white',
 		width: '50vw',
 		minWidth: '600px',
-		margin: '10vh auto',
+		margin: '20px auto',
 		padding: '15px',
 		borderRadius: '9px',
 		border: 'solid 1px #DBDBDB'
 	},
 	drinkName: {
 		marginTop: '10px',
-		fontWeight: '700',
-		fontSize: '1.15em',
+		// fontWeight: '700',
+		// fontSize: '1.15em',
 		color: '#434343',
 	},
 	drinkHeader: {
@@ -55,12 +78,14 @@ const styles = {
 		color: '#434343'
 	},
 	drinkHeaderRatio: {
-		width: '5%',
+		width: '7.5%',
+		paddingLeft: '0.75%',
 		float: 'left',
-		textAlign: 'center'
+		textAlign: 'center',
+		boxSizing: 'border-box',
 	},
 	drinkHeaderName: {
-		width: '50%',
+		width: '47.5%',
 		float: 'left',
 		textAlign: 'left',
 		paddingLeft: 'calc(2% + 5px)',
@@ -94,12 +119,13 @@ const styles = {
 		lineHeight: '35px',
 		':hover': {
 			boxShadow: '0 0 0 1px #DBDBDB',
-			borderRadius: '4px'
+			borderRadius: '4px 0 0 4px',
 		}
 	},
 	ingredientRatio: {
 		// minWidth: 30,
-		width: '5%',
+		width: '7.5%',
+		paddingLeft: '1%',
 		// height: '100%',
 		float: 'left',
 		fontWeight: 400,
@@ -108,7 +134,7 @@ const styles = {
 	},
 	ingredientName: {
 		// minWidth: 300,
-		width: '50%',
+		width: '47.5%',
 		// height: '100%',
 		float: 'left',
 		fontWeight: 700,
@@ -134,7 +160,7 @@ const styles = {
 		textAlign: 'right',
 		boxSizing: 'border-box',
 	},
-	ingredientInput: {
+	input: {
 		fontSize: '1em',
 		color: '#434343',
 		marginBottom: '2px',
