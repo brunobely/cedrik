@@ -111,25 +111,3 @@ textarea
 	background-color: #e53935;
 	opacity: 1;
 }
-
-i.fa-balance-scale {
-	margin-left: 5px;
-}
-
-.container {
-	margin-top: 80px;
-}
-
-.gitHubButton {
-	position: absolute;
-	right: 25px;
-	color: #333333;
-}
-
-.gitHubButton:hover {
-	color: white;
-}
-
-.gitHubButton:active {
-	color: #232323;
-}

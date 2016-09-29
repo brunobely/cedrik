@@ -10,85 +10,6 @@ const styles = {
 	addIngredient: {
 
 	},
-	cedrikHeader: {
-		position: 'fixed',
-		zIndex: '99',
-		top: 0,
-		width: '100%',
-		height: 60,
-		// display: 'inline-block',
-		// verticalAlign: 'middle',
-		lineHeight: '62px',
-		marginBottom: '10px',
-		fontFamily: 'Racing Sans One',
-		fontSize: '2.25em',
-		color: 'white',
-		backgroundColor: '#FFD54F',
-		boxShadow: '0 2px 0 0 #FFCA28, 0 2px 7px 0 #C3C3C3',
-	},
-	infoBar: {
-		width: '100%',
-		height: '40px',
-		lineHeight: '40px',
-		fontSize: '1.1em',
-		marginTop: '15px',
-	},
-	infoQuantity: {
-		height: '100%',
-		float: 'left',
-	},
-	infoVolStandard: {
-		height: '100%',
-		float: 'left',
-	},
-	infoStrength: {
-		height: '100%',
-		float: 'left',
-	},
-	infoCostStandard: {
-		height: '100%',
-		float: 'left',
-	},
-	infoCostTotal: {
-		height: '100%',
-		float: 'left',
-	},
-	infoSymbol: {
-		marginLeft: '5px',
-		fontSize: '1.05em',
-	},
-	infoCostTotalText: {
-		float: 'right',
-		textAlign: 'center',
-		marginRight: '15px',
-		width: '55%',
-		fontWeight: '100',
-		color: '#636363',
-	},
-	compareButton: {
-		position: 'fixed',
-		bottom: 0,
-		right: 0,
-		height: 35,
-		width: '20vw',
-		minWidth: '200px',
-		color: 'white',
-		backgroundColor: '#4FC3F7',
-		border: '1px solid #03A9F4',
-		borderRadius: '6px 0 0 0',
-		textShadow: '0 1px #737373',
-		fontSize: '1em',
-		outline: 'none',
-		':hover': {
-			backgroundColor: color('#4FC3F7').darken(0.1).hexString(),
-		},
-		':focus': {
-			backgroundColor: color('#4FC3F7').darken(0.2).hexString(),
-		},
-		':active': {
-			backgroundColor: color('#4FC3F7').darken(0.25).hexString(),
-		}
-	},
 	addDrinkButton: {
 		margin: '20px',
 		width: '40px',
@@ -99,7 +20,6 @@ const styles = {
 		textShadow: '0 1px #737373',
 		// boxShadow: 'inset 0 1px 0 0 #737373, inset 0 -1px 0 0 #DBDBDB',
 		border: '1px solid #4CAF50',
-		boxShadow: '0 2px 2px 0 #DBDBDB',
 		outline: 'none',
 		':hover': {
 			backgroundColor: color('#81C784').darken(0.1).hexString(),
@@ -141,15 +61,13 @@ const styles = {
 		fontSize: '0.95em',
 		color: '#C3C3C3',
 		backgroundColor: 'transparent',
-		border: 'dashed 1px #DBDBDB',
-		boxShadow: 'none',
+		border: 'dashed 1px #DBDBDB'
 	},
 	// emptyIngredientsLabel: {
 	// 	height: '35px',
 	// 	width: '100%',
 	// },
 	drink: {
-		overflow: 'hidden',
 		position: 'relative',
 		backgroundColor: 'white',
 		width: '50vw',
@@ -157,8 +75,7 @@ const styles = {
 		margin: '20px auto 0 auto',
 		padding: '15px',
 		borderRadius: '9px',
-		border: 'solid 1px #DBDBDB',
-		boxShadow: '0 2px 2px 0 #DBDBDB'
+		border: 'solid 1px #DBDBDB'
 	},
 	drinkName: {
 		marginTop: '10px',

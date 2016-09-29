@@ -3,8 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import styles from './Styles';
 import Radium from 'radium';
-import CedrikHeader from './Header.js';
-import InfoBar from './InfoBar.js';
 
 class App extends Component {
 	render() {
@@ -42,18 +40,12 @@ class App extends Component {
 
 		return (
 			<div className="App">
-				<CedrikHeader />
-				<div className="container">
-					<EmptyDrinksLabel shouldDisplay={this.props.drinks.length == 0}/>
-					{drinks}
-					<AddDrinkButton
-						onAddDrink={this.props.onAddDrink}
-						nextDrinkID={nextDrinkID}
-					/>
-					<CompareButton
-						onCompare={this.props.onCompare}
-					/>
-				</div>
+				<EmptyDrinksLabel shouldDisplay={this.props.drinks.length == 0}/>
+				{drinks}
+				<AddDrinkButton
+					onAddDrink={this.props.onAddDrink}
+					nextDrinkID={nextDrinkID}
+				/>
 			</div>
 		);
 	}
@@ -104,7 +96,6 @@ function Drink (props) {
 				onAddIngredient={props.onAddIngredient}
 				nextIngredientID={nextIngredientID}
 			/>
-			<InfoBar ingredients={props.ingredients} />
 			<button type="button" className="deleteDrinkButton" onClick={props.onRemoveDrink.bind(null, props.drinkID)}><i className="fa fa-remove"></i></button>
 		</div>
 	);
@@ -256,20 +247,6 @@ function EmptyDrinksLabel (props) {
 // 	);
 // }
 
-// MAKE COMPARE/ADD ONE COMPONENT
-function CompareButton (props) {
-	return (
-		<button
-			type="button"
-			className="CompareButton"
-			style={styles.compareButton}
-			onClick={props.onCompare.bind(null)}
-		>
-			Compare <i className="fa fa-balance-scale"></i>
-		</button>
-	);
-}
-
 function AddDrinkButton (props) {
 	return (
 		<button
@@ -304,7 +281,6 @@ Ingredient = Radium(Ingredient);
 Input = Radium(Input);
 EmptyDrinksLabel = Radium(EmptyDrinksLabel);
 // EmptyIngredientsLabel = Radium(EmptyIngredientsLabel);
-CompareButton = Radium(CompareButton);
 AddDrinkButton = Radium(AddDrinkButton);
 AddIngredientButton = Radium(AddIngredientButton);
 

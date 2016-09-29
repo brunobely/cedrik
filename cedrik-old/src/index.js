@@ -149,9 +149,6 @@ function drinks (state = {
 	// console.log('Reducer');
 	// console.log(action.type);
 	switch (action.type) {
-		case 'TOGGLE_COMPARISON':
-			console.log('compare');
-			return state;
 		case 'ADD_DRINK':
 			return {
 				drinks: [
@@ -228,9 +225,6 @@ const render = () => {
 			onChangeDrinkName={(drinkName, drinkID) =>
 				store.dispatch({ type: 'CHANGE_DRINK_NAME', name: drinkName, drinkID: drinkID})
 			}
-			onCompare={() => {
-				store.dispatch({ type: 'TOGGLE_COMPARISON' })
-			}}
 			onAddDrink={(drinkID) => 
 				store.dispatch({ type: 'ADD_DRINK', drinkID: drinkID })
 			}
