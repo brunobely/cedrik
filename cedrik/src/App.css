@@ -133,3 +133,28 @@ i.fa-balance-scale {
 .gitHubButton:active {
 	color: #232323;
 }
+
+.infoBarP {
+	margin-top: 5px;
+	line-height: 10px;
+}
+
+.infoBarQuantityHeader {
+	color: #B39DDB;
+}
+
+.infoBarVolStandardHeader {
+	color: #90CAF9;	
+}
+
+.infoBarStrengthHeader {
+	color: #ef5350;
+}
+
+.infoBarCostStandardHeader {
+	color: #FFCC80;
+}
+
+.infoBarCostTotalHeader {
+	color: #A5D6A7;
+}

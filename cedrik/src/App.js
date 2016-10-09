@@ -5,13 +5,27 @@ import styles from './Styles';
 import Radium from 'radium';
 import CedrikHeader from './Header.js';
 import InfoBar from './InfoBar.js';
+import { CompareButton, CompareView } from './CompareView.js';
+import keydown from 'react-keydown';
 
 class App extends Component {
+	// keypress(event) {
+	// 	// event.preventDefault();
+	// 	console.log(event.key);
+	// }
+
 	render() {
-		// console.log('App render');
 		// console.log(this.props.drinks);
-		// console.log(this.props.onChangeDrinkName);
-		console.log(this.props.drinks);
+		// console.log(document.activeElement === undefined ? document.activeElement : document.activeElement.tagName === 'INPUT');
+
+		// https://css-tricks.com/snippets/javascript/javascript-keycodes/
+		// https://www.npmjs.com/package/react-keydown
+		// 68 is D, 73 is I
+		// @keydown( 68 )
+		// addDrink (event) {
+		// 	event.preventDefault();
+		// 	this.props.onAddDrink.bind(null, nextDrinkID);
+		// }
 
 		this.props.drinks.sort(function(a,b) {
 			// Ascending: first ID less than the next
@@ -51,6 +65,12 @@ class App extends Component {
 						nextDrinkID={nextDrinkID}
 					/>
 					<CompareButton
+						shouldDisplay={!this.props.comparison}
+						onCompare={this.props.onCompare}
+					/>
+					<CompareView
+						shouldDisplay={this.props.comparison}
+						drinks={this.props.drinks}
 						onCompare={this.props.onCompare}
 					/>
 				</div>
@@ -58,10 +78,12 @@ class App extends Component {
 		);
 	}
 }
+// /\ unify CompareView and CompareButton
 
 function Drink (props) {
 	//new IDs: new Date().getUTCMilliseconds()
 
+	// console.log(props.drinkID);
 	props.ingredients.sort(function(a,b) {
 		// Ascending: first ID less than the next
 		return a.id - b.id;
@@ -104,7 +126,7 @@ function Drink (props) {
 				onAddIngredient={props.onAddIngredient}
 				nextIngredientID={nextIngredientID}
 			/>
-			<InfoBar ingredients={props.ingredients} />
+			<InfoBar drinkID={props.drinkID} ingredients={props.ingredients} />
 			<button type="button" className="deleteDrinkButton" onClick={props.onRemoveDrink.bind(null, props.drinkID)}><i className="fa fa-remove"></i></button>
 		</div>
 	);
@@ -120,6 +142,7 @@ function DrinkName (props) {
 				align="center"
 				size="1.15em"
 				weight="700"
+				clearButton="right"
 			>
 				{props.children}
 			</Input>
@@ -143,11 +166,11 @@ function Ingredient (props) {
 	return (
 		<div
 			className="Ingredient"
-			key={props.id}
+			key={props.ingredientID}
 			style={styles.ingredient}
 		>
 			<div style={styles.ingredientRatio}><Input validationType="decimal" ingredientID={props.ingredientID} drinkID={props.drinkID} onChangeFunc={props.onChangeIngredientRatio} align="center">{props.ratio}</Input></div>
-			<div style={styles.ingredientName}><Input ingredientID={props.ingredientID} drinkID={props.drinkID} onChangeFunc={props.onChangeIngredientName} align="left" weight="700">{props.name}</Input></div>
+			<div style={styles.ingredientName}><Input ingredientID={props.ingredientID} drinkID={props.drinkID} onChangeFunc={props.onChangeIngredientName} align="left" weight="700" clearButton="right">{props.name}</Input></div>
 			<div style={styles.ingredientSize}><Input validationType="natural" ingredientID={props.ingredientID} drinkID={props.drinkID} onChangeFunc={props.onChangeIngredientSize} align="right">{props.size}</Input></div>
 			<div style={styles.ingredientML}>ml</div>
 			<div style={styles.ingredientABV}><Input validationType="percentage" ingredientID={props.ingredientID} drinkID={props.drinkID} onChangeFunc={props.onChangeIngredientABV} align="right">{props.abv}</Input></div>
@@ -208,33 +231,35 @@ function Input (props) {
 	};
 
 	return (
-		<input
-			ref={node => {
-				input = node;
-			}}
-			className="Input"
-			value={props.validationType == undefined ? props.children : String(props.children).replace(/^0+(?!\.|$)/, '')}
-			style={Object.assign({},styles.input, additionalStyle)}
-			onChange={() => {
-				if (input.value == '' && props.validationType != 'string') input.value = 0;
-				
-				var func = props.inputType == 'DrinkName' ? onDrinkChange : onIngredientChange;
+		<div className="Input">
+			<input
+				ref={node => {
+					input = node;
+				}}
+				className="Input"
+				value={props.validationType == undefined ? props.children : String(props.children).replace(/^0+(?!\.|$)/, '')}
+				style={Object.assign({},styles.input, additionalStyle)}
+				onFocus={()=>{input.select()}}
+				onChange={() => {
+					if (input.value == '' && props.validationType != 'string' && props.validationType != undefined) input.value = 0;
+					
+					var func = props.inputType == 'DrinkName' ? onDrinkChange : onIngredientChange;
 
-				if (props.validationType == 'natural' && !/^[0-9]\d*$/.test(input.value)) {
-					func = onError("Input must be a natural number");
-				}
-				else if (props.validationType == 'decimal' && (!isNumeric(input.value) || parseFloat(input.value) < 0)) {
-					func = onError("Input must be a positive decimal number");
-				}
-				else if (props.validationType == 'percentage' && (!isNumeric(input.value) || parseFloat(input.value) < 0 || parseFloat(input.value) > 100 )) {
-					func = onError("Input must be a decimal number between 0 and 100");
-				}
-				func()();
-				// console.log('onChange');
-			}}
-		>
+					if (props.validationType == 'natural' && !/^[0-9]\d*$/.test(input.value)) {
+						func = onError("Input must be a natural number");
+					}
+					else if (props.validationType == 'decimal' && (!isNumeric(input.value) || parseFloat(input.value) < 0)) {
+						func = onError("Input must be a positive decimal number");
+					}
+					else if (props.validationType == 'percentage' && (!isNumeric(input.value) || parseFloat(input.value) < 0 || parseFloat(input.value) > 100 )) {
+						func = onError("Input must be a decimal number between 0 and 100");
+					}
+					func()();
+				}}
+			>
 
-		</input>
+			</input>
+		</div>
 	);
 }
 
@@ -255,20 +280,6 @@ function EmptyDrinksLabel (props) {
 // 		</div>
 // 	);
 // }
-
-// MAKE COMPARE/ADD ONE COMPONENT
-function CompareButton (props) {
-	return (
-		<button
-			type="button"
-			className="CompareButton"
-			style={styles.compareButton}
-			onClick={props.onCompare.bind(null)}
-		>
-			Compare <i className="fa fa-balance-scale"></i>
-		</button>
-	);
-}
 
 function AddDrinkButton (props) {
 	return (
@@ -304,7 +315,6 @@ Ingredient = Radium(Ingredient);
 Input = Radium(Input);
 EmptyDrinksLabel = Radium(EmptyDrinksLabel);
 // EmptyIngredientsLabel = Radium(EmptyIngredientsLabel);
-CompareButton = Radium(CompareButton);
 AddDrinkButton = Radium(AddDrinkButton);
 AddIngredientButton = Radium(AddIngredientButton);
 

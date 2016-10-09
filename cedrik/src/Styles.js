@@ -1,6 +1,10 @@
 import color from 'color';
+import stylesInfoBar from './Styles-InfoBar.js';
+import stylesCompareView from './Styles-CompareView.js';
 
 const styles = {
+	...stylesInfoBar,
+	...stylesCompareView,
 	boldface: {
 		fontWeight: 700
 	},
@@ -26,67 +30,24 @@ const styles = {
 		backgroundColor: '#FFD54F',
 		boxShadow: '0 2px 0 0 #FFCA28, 0 2px 7px 0 #C3C3C3',
 	},
-	infoBar: {
-		width: '100%',
-		height: '40px',
-		lineHeight: '40px',
-		fontSize: '1.1em',
-		marginTop: '15px',
-	},
-	infoQuantity: {
-		height: '100%',
-		float: 'left',
-	},
-	infoVolStandard: {
-		height: '100%',
-		float: 'left',
-	},
-	infoStrength: {
-		height: '100%',
-		float: 'left',
-	},
-	infoCostStandard: {
-		height: '100%',
-		float: 'left',
-	},
-	infoCostTotal: {
-		height: '100%',
-		float: 'left',
-	},
-	infoSymbol: {
-		marginLeft: '5px',
-		fontSize: '1.05em',
-	},
-	infoCostTotalText: {
-		float: 'right',
-		textAlign: 'center',
-		marginRight: '15px',
-		width: '55%',
-		fontWeight: '100',
-		color: '#636363',
-	},
-	compareButton: {
-		position: 'fixed',
-		bottom: 0,
-		right: 0,
-		height: 35,
-		width: '20vw',
-		minWidth: '200px',
-		color: 'white',
-		backgroundColor: '#4FC3F7',
-		border: '1px solid #03A9F4',
-		borderRadius: '6px 0 0 0',
-		textShadow: '0 1px #737373',
+	input: {
 		fontSize: '1em',
+		color: '#434343',
+		marginBottom: '2px',
+		padding: '0 5px',
+		boxSizing: 'border-box',
+		width: '100%',
+		// textAlign: 'right',
+		borderRadius: '3px',
 		outline: 'none',
 		':hover': {
-			backgroundColor: color('#4FC3F7').darken(0.1).hexString(),
+			backgroundColor: color('#C4C4C4').lighten(0.25).hexString(),
 		},
 		':focus': {
-			backgroundColor: color('#4FC3F7').darken(0.2).hexString(),
+			backgroundColor: color('#C4C4C4').lighten(0.2).hexString(),
 		},
 		':active': {
-			backgroundColor: color('#4FC3F7').darken(0.25).hexString(),
+			backgroundColor: color('#C4C4C4').lighten(0.1).hexString(),
 		}
 	},
 	addDrinkButton: {
@@ -149,7 +110,7 @@ const styles = {
 	// 	width: '100%',
 	// },
 	drink: {
-		overflow: 'hidden',
+		// overflow: 'hidden',
 		position: 'relative',
 		backgroundColor: 'white',
 		width: '50vw',
@@ -258,26 +219,6 @@ const styles = {
 		paddingRight: '1%',
 		textAlign: 'right',
 		boxSizing: 'border-box',
-	},
-	input: {
-		fontSize: '1em',
-		color: '#434343',
-		marginBottom: '2px',
-		padding: '0 5px',
-		boxSizing: 'border-box',
-		width: '100%',
-		// textAlign: 'right',
-		borderRadius: '3px',
-		outline: 'none',
-		':hover': {
-			backgroundColor: color('#C4C4C4').lighten(0.25).hexString(),
-		},
-		':focus': {
-			backgroundColor: color('#C4C4C4').lighten(0.2).hexString(),
-		},
-		':active': {
-			backgroundColor: color('#C4C4C4').lighten(0.1).hexString(),
-		}
 	},
 	ingredientABV: {
 		// minWidth: 60,

@@ -82,8 +82,7 @@ const drink = (state, action) => {
 	}
 }
 
-function drinks (state = {
-		drinks: [
+/* EXAMPLE DRINKS IN STATE
 			{
 				id: 1,
 				name: 'Kirkland Lemonade',
@@ -144,16 +143,25 @@ function drinks (state = {
 					}
 				]
 			}
-		]
+		*/
+
+function drinks (state = {
+		comparison: false,
+		drinks: []
 	}, action) {
 	// console.log('Reducer');
 	// console.log(action.type);
 	switch (action.type) {
 		case 'TOGGLE_COMPARISON':
-			console.log('compare');
+			// console.log('compare');
+			return {
+				...state,
+				comparison: !state.comparison
+			};
 			return state;
 		case 'ADD_DRINK':
 			return {
+				...state,
 				drinks: [
 					...state.drinks,
 					drink(undefined, action)
@@ -161,6 +169,7 @@ function drinks (state = {
 			};
 		case 'REMOVE_DRINK':
 			return {
+				...state,
 				drinks: [
 					...state.drinks.filter(d => drink(d, action))
 				]
@@ -172,15 +181,17 @@ function drinks (state = {
 		case 'CHANGE_INGREDIENT_ABV':
 		case 'CHANGE_INGREDIENT_PRICE':
 			return {
+				...state,
 				drinks: [
 					...state.drinks.filter(d => d.id != action.drinkID),
 					drink(state.drinks.filter(d => d.id == action.drinkID)[0], action)
 				]
 			}
 		case 'ADD_INGREDIENT':
-			return { drinks: addIngredient(state.drinks, action.drinkID, action.ingredientID) }
+			return { ...state, drinks: addIngredient(state.drinks, action.drinkID, action.ingredientID) }
 		case 'REMOVE_INGREDIENT':
 			return {
+				...state,
 				drinks: [
 					...state.drinks.filter(d => d.id != action.drinkID),
 					{

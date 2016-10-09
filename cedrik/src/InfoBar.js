@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import styles from './Styles';
 import Radium from 'radium';
+import ReactTooltip from 'react-tooltip';
 
 function InfoBar (props) {
 	// Information to include:
@@ -68,7 +69,7 @@ function InfoBar (props) {
 		var limitingIngredient = ingredients.reduce( (a, b) => {
 			var drinksAcanMake = Number(a['size'])/(Number(a['ratio']) * volumePerPart);
 			var drinksBcanMake = Number(b['size'])/(Number(b['ratio']) * volumePerPart);
-			console.log(drinksAcanMake + ' < ' + drinksBcanMake);
+			// console.log(drinksAcanMake + ' < ' + drinksBcanMake);
 			return drinksAcanMake < drinksBcanMake ? a : b;
 		}, ingredients[0]);
 
@@ -88,26 +89,88 @@ function InfoBar (props) {
 
 	return (
 		<div className="InfoBar" style={styles.infoBar}>
-			<div className="infoQuantity" style={[styles.infoQuantity, additionalStyle]}>
+			<div data-tip data-for={props.drinkID + 'quantity'} className="infoQuantity" style={[styles.infoQuantity, additionalStyle]}>
 				<i style={[styles.infoSymbol, { color: '#7E57C2' }]} className="fa fa-cubes"></i>
-				<div style={styles.infoCostTotalText}>{ingredients.length == 0 ? '—' : Math.floor(batchSize)}</div>
+				<div style={styles.infoCostTotalText}>{!isFinite(batchSize) ? '—' : Math.floor(batchSize)}</div>
 			</div>
-			<div className="infoVolStandard" style={[styles.infoVolStandard, additionalStyle]}>
+			<ReactTooltip
+				id={props.drinkID + 'quantity'}
+				style={[styles.tooltipBase, styles.tooltipQuantity]}
+				effect="solid"
+			>
+				<span className="infoBarQuantityHeader">Batch Size</span>
+				<p className="infoBarP">The number of standard</p>
+				<p className="infoBarP">drinks you can make</p>
+				<p className="infoBarP">with this recipe</p>
+			</ReactTooltip>
+
+
+
+			<div data-tip data-for={props.drinkID + 'volStandard'} className="infoVolStandard" style={[styles.infoVolStandard, additionalStyle]}>
 				<i style={[styles.infoSymbol, { color: '#42A5F5' }]} className="fa fa-flask"></i>
-				<div style={styles.infoCostTotalText}>{ingredients.length == 0 ? '—' : volumeStandard.toFixed(0)} ml</div>
+				<div style={styles.infoCostTotalText}>{!isFinite(volumeStandard) ? '—' : volumeStandard.toFixed(0)} ml</div>
 			</div>
-			<div className="infoStrength" style={[styles.infoStrength, additionalStyle]}>
+			<ReactTooltip
+				id={props.drinkID + 'volStandard'}
+				style={[styles.tooltipBase, styles.tooltipVolStandard]}
+				effect="solid"
+			>
+				<span className="infoBarVolStandardHeader">Size</span>
+				<p className="infoBarP">The volume of a</p>
+				<p className="infoBarP">standard drink</p>
+				<p className="infoBarP">made with this</p>
+			</ReactTooltip>
+
+
+
+			<div data-tip data-for={props.drinkID + 'strength'} className="infoStrength" style={[styles.infoStrength, additionalStyle]}>
 				<i style={[styles.infoSymbol, { color: '#ef5350' }]} className="fa fa-tint"></i>
-				<div style={styles.infoCostTotalText}>{ingredients.length == 0 ? '— ' : (drinkABV * 100).toFixed(1)}%</div>
+				<div style={styles.infoCostTotalText}>{!isFinite(drinkABV) ? '— ' : (drinkABV * 100).toFixed(1)}%</div>
 			</div>
-			<div className="infoCostStandard" style={[styles.infoCostStandard, additionalStyle]}>
+			<ReactTooltip
+				id={props.drinkID + 'strength'}
+				style={[styles.tooltipBase, styles.tooltipStrength]}
+				effect="solid"
+			>
+				<span className="infoBarStrengthHeader">Strength</span>
+				<p className="infoBarP">The alcohol</p>
+				<p className="infoBarP">by volume in</p>
+				<p className="infoBarP">this drink</p>
+			</ReactTooltip>
+
+
+
+			<div data-tip data-for={props.drinkID + 'costStandard'} className="infoCostStandard" style={[styles.infoCostStandard, additionalStyle]}>
 				<i style={[styles.infoSymbol, { color: '#FFA726' }]} className="fa fa-glass"></i>
-				<div style={styles.infoCostTotalText}>$ {ingredients.length == 0 ? '—' : standardDrinkPrice.toFixed(2)}</div>
+				<div style={styles.infoCostTotalText}>$ {!isFinite(standardDrinkPrice) ? '—' : standardDrinkPrice.toFixed(2)}</div>
 			</div>
-			<div className="infoCostTotal" style={[styles.infoCostTotal, additionalStyle]}>
+			<ReactTooltip
+				id={props.drinkID + 'costStandard'}
+				style={[styles.tooltipBase, styles.tooltipCostStandard]}
+				effect="solid"
+			>
+				<span className="infoBarCostStandardHeader">Standard Drink Cost</span>
+				<p className="infoBarP">The cost of a</p>
+				<p className="infoBarP">standard drink made</p>
+				<p className="infoBarP">with this recipe</p>
+			</ReactTooltip>
+
+
+
+			<div data-tip data-for={props.drinkID + 'costTotal'} className="infoCostTotal" style={[styles.infoCostTotal, additionalStyle]}>
 				<i style={[styles.infoSymbol, { color: '#66BB6A' }]} className="fa fa-usd"></i>
-				<div style={styles.infoCostTotalText}>{ingredients.length == 0 ? '—' : totalPrice.toFixed(2)}</div>
+				<div style={styles.infoCostTotalText}>{!isFinite(totalPrice) ? '—' : totalPrice.toFixed(2)}</div>
 			</div>
+			<ReactTooltip
+				id={props.drinkID + 'costTotal'}
+				style={[styles.tooltipBase, styles.tooltipCostTotal]}
+				effect="solid"
+			>
+				<span className="infoBarCostTotalHeader">Total Cost</span>
+				<p className="infoBarP">The total cost of</p>
+				<p className="infoBarP">the ingredients</p>
+				<p className="infoBarP">in this recipe</p>
+			</ReactTooltip>
 		</div>
 	);
 }
