@@ -31,18 +31,18 @@ const stylesCompareView = {
 		height: '30px',
 		width: '100%',
 		color: 'white',
-		backgroundColor: color('#4FC3F7').lighten(0.1).hexString(),
+		backgroundColor: color('#4FC3F7').lighten(0.2).hexString(),
 		textShadow: '0 1px #737373',
 		fontSize: '0.95em',
 		outline: 'none',
 		':hover': {
-			backgroundColor: color('#4FC3F7').darken(0.1).hexString(),
+			backgroundColor: color('#4FC3F7').lighten(0.2).darken(0.1).hexString(),
 		},
 		':focus': {
-			backgroundColor: color('#4FC3F7').darken(0.2).hexString(),
+			backgroundColor: color('#4FC3F7').lighten(0.2).darken(0.2).hexString(),
 		},
 		':active': {
-			backgroundColor: color('#4FC3F7').darken(0.25).hexString(),
+			backgroundColor: color('#4FC3F7').lighten(0.2).darken(0.25).hexString(),
 		}
 	},
 	compareView: {
@@ -52,7 +52,7 @@ const stylesCompareView = {
 		width: '100%',
 		height: '150px', // Set in CompareView.js
 		maxHeight: '210px',
-		backgroundColor: '#4FC3F7',
+		backgroundColor: color('#4FC3F7').lighten(0.1).hexString(),
 		overflow: 'scroll',
 	},
 	spacingDiv: {
