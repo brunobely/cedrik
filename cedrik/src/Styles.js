@@ -96,10 +96,13 @@ const styles = {
 		}
 	},
 	emptyDrinksLabel: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
 		/* added on top of 'drink' style */
 		height: '133px', /* 133 maybe so it's the same size? */ /* or 75px cuz it looks gud */
-		lineHeight: '133px',
-		fontSize: '0.95em',
+		// lineHeight: '133px',
+		fontSize: '0.85em',
 		color: '#C3C3C3',
 		backgroundColor: 'transparent',
 		border: 'dashed 1px #DBDBDB',
@@ -113,8 +116,10 @@ const styles = {
 		// overflow: 'hidden',
 		position: 'relative',
 		backgroundColor: 'white',
-		width: '50vw',
-		minWidth: '600px',
+		boxSizing: 'border-box',
+		width: '100%',
+		// minWidth: '335px',
+		maxWidth: '600px',
 		margin: '20px auto 0 auto',
 		padding: '15px',
 		borderRadius: '9px',
@@ -195,6 +200,7 @@ const styles = {
 	ingredientName: {
 		// minWidth: 300,
 		width: '47.5%',
+		maxWidth: 'calc(47.5% - 20px)',
 		// height: '100%',
 		float: 'left',
 		fontWeight: 700,
@@ -203,7 +209,7 @@ const styles = {
 		boxSizing: 'border-box',
 	},
 	ingredientSize: {
-		// minWidth: 90,
+		minWidth: 50,
 		width: '11%',
 		// height: '100%',
 		float: 'left',
@@ -221,7 +227,7 @@ const styles = {
 		boxSizing: 'border-box',
 	},
 	ingredientABV: {
-		// minWidth: 60,
+		minWidth: 30,
 		width: '7%',
 		// height: '100%',
 		float: 'left',

@@ -67,6 +67,16 @@ textarea
 	/*display: none;*/
 	/*visibility: hidden;*/
 	opacity: 0;
+
+	
+}
+
+@media only screen and (max-width: 550px) {
+	.deleteButton {
+		width: 16px;
+		border-radius: 0;
+		font-size: 0.65em;
+	}
 }
 
 .deleteButton:hover {
@@ -80,7 +90,8 @@ textarea
 .Ingredient:hover .deleteButton {
 	/*display: inline;*/
 	/*visibility: visible;*/
-	opacity: 1;
+	/*opacity: 1;*/
+	opacity: 0.75;
 }
 
 .Ingredient:hover {

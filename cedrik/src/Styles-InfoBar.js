@@ -7,6 +7,9 @@ const stylesInfoBar = {
 		lineHeight: '40px',
 		fontSize: '1.1em',
 		marginTop: '15px',
+		'@media only screen and (max-width: 550px)': {
+			fontSize: '0.7em',
+		}
 	},
 	infoQuantity: {
 		height: '100%',
@@ -31,6 +34,9 @@ const stylesInfoBar = {
 	infoSymbol: {
 		marginLeft: '5px',
 		fontSize: '1.05em',
+		'@media only screen and (max-width: 550px)': {
+			fontSize: '0.65em',
+		}
 	},
 	//Fix name
 	infoCostTotalText: {
@@ -40,6 +46,9 @@ const stylesInfoBar = {
 		width: '55%',
 		fontWeight: '100',
 		color: '#636363',
+		'@media only screen and (max-width: 550px)': {
+			marginRight: '5px',
+		}
 	},
 	'tooltipBase': {
 		

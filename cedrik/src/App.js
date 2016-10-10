@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import styles from './Styles';
 import Radium from 'radium';
+import { StyleRoot } from 'radium';
 import CedrikHeader from './Header.js';
 import InfoBar from './InfoBar.js';
 import { CompareButton, CompareView } from './CompareView.js';
@@ -50,31 +51,33 @@ class App extends Component {
 			/>
 		);
 
-	var nextDrinkID = 0;
-	if (this.props.drinks.length > 0)
-		nextDrinkID = this.props.drinks.slice(-1)[0].id + 1;
+		var nextDrinkID = 0;
+		if (this.props.drinks.length > 0)
+			nextDrinkID = this.props.drinks.slice(-1)[0].id + 1;
 
 		return (
-			<div className="App">
-				<CedrikHeader />
-				<div className="container">
-					<EmptyDrinksLabel shouldDisplay={this.props.drinks.length == 0}/>
-					{drinks}
-					<AddDrinkButton
-						onAddDrink={this.props.onAddDrink}
-						nextDrinkID={nextDrinkID}
-					/>
-					<CompareButton
-						shouldDisplay={!this.props.comparison}
-						onCompare={this.props.onCompare}
-					/>
-					<CompareView
-						shouldDisplay={this.props.comparison}
-						drinks={this.props.drinks}
-						onCompare={this.props.onCompare}
-					/>
+			<StyleRoot>
+				<div className="App">
+					<CedrikHeader />
+					<div className="container">
+						<EmptyDrinksLabel shouldDisplay={this.props.drinks.length == 0}/>
+						{drinks}
+						<AddDrinkButton
+							onAddDrink={this.props.onAddDrink}
+							nextDrinkID={nextDrinkID}
+						/>
+						<CompareButton
+							shouldDisplay={!this.props.comparison}
+							onCompare={this.props.onCompare}
+						/>
+						<CompareView
+							shouldDisplay={this.props.comparison}
+							drinks={this.props.drinks}
+							onCompare={this.props.onCompare}
+						/>
+					</div>
 				</div>
-			</div>
+			</StyleRoot>
 		);
 	}
 }

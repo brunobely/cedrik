@@ -1,8 +1,10 @@
 {
   "name": "cedrik",
   "version": "0.0.1",
+  "homepage": "http://brunobely.github.io/cedrik",
   "private": true,
   "devDependencies": {
+    "gh-pages": "^0.11.0",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
@@ -18,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   }
 }

@@ -68,6 +68,9 @@ const stylesCompareView = {
 		padding: '5px 15px',
 		height: '50px',
 		color: 'white',
+		'@media only screen and (max-width: 550px)': {
+			padding: '5px 5px',
+		}
 	},
 	// If drink name is too long, things get funky
 	compareDrinkName: {
@@ -77,12 +80,15 @@ const stylesCompareView = {
 		fontSize: '0.85em',
 		fontWeight: '700',
 		textAlign: 'left',
-		width: '25%',
+		width: 'calc(25% - 15px)',
 		height: '100%',
 		minWidth: '100px', // Will cause issues with compareRowInfo width which is 75%
 		overflowWrap: 'break-word',
 		wordBreak: 'break-all',
 		float: 'left',
+		'@media only screen and (max-width: 550px)': {
+			fontSize: '0.75em',
+		}
 	},
 	compareEmptyDrinksRow: {
 		height: '60px',
@@ -93,9 +99,12 @@ const stylesCompareView = {
 	compareRowInfo: {
 		display: 'flex',
 		alignItems: 'center',
-		width: '75%',
+		width: 'calc(75% - 15px)',
 		height: '100%',
 		float: 'left',
+		'@media only screen and (max-width: 550px)': {
+			fontSize: '0.70em'
+		}
 	}
 }
 
