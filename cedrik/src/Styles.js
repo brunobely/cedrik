@@ -200,13 +200,33 @@ const styles = {
 	ingredientName: {
 		// minWidth: 300,
 		width: '47.5%',
-		maxWidth: 'calc(47.5% - 20px)',
 		// height: '100%',
 		float: 'left',
 		fontWeight: 700,
 		textAlign: 'left',
 		paddingLeft: '2%',
 		boxSizing: 'border-box',
+		'@media only screen and (max-width: 500px)': {
+			maxWidth: 'calc(47.5% - 5px)',
+		},
+		'@media only screen and (max-width: 450px)': {
+			maxWidth: 'calc(47.5% - 10px)',
+		},
+		'@media only screen and (max-width: 420px)': {
+			maxWidth: 'calc(47.5% - 15px)',
+		},
+		'@media only screen and (max-width: 420px)': {
+			maxWidth: 'calc(47.5% - 15px)',
+		},
+		'@media only screen and (max-width: 390px)': {
+			maxWidth: 'calc(47.5% - 20px)',
+		},
+		'@media only screen and (max-width: 365px)': {
+			maxWidth: 'calc(47.5% - 25px)',
+		},
+		'@media only screen and (max-width: 340px)': {
+			maxWidth: 'calc(47.5% - 30px)',
+		}
 	},
 	ingredientSize: {
 		minWidth: 50,
